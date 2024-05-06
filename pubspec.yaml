@@ -32,11 +32,15 @@ dependencies:
   flutter_svg: ^2.0.10+1
   flutter_cache_manager: ^3.3.1
   flutter_dotenv: ^5.1.0
+  lottie: ^3.1.0
+  easy_refresh: ^3.3.5+1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  build_runner: ^2.4.9
+  retrofit_generator: ^8.1.0
 
 flutter:
 
@@ -44,3 +48,7 @@ flutter:
 
   assets:
     - .env
+    - assets/icons/
+    - assets/translations/
+
+

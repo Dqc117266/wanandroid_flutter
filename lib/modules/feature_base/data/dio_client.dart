@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:wanandroid_flutter/env/env.dart';
 
 class DioClient {
@@ -10,7 +9,7 @@ class DioClient {
 
   factory DioClient() => _instance;
 
-  late Dio _dio;
+  late Dio dio;
 
   DioClient._internal() {
     BaseOptions options = BaseOptions(
@@ -19,17 +18,15 @@ class DioClient {
       receiveTimeout: Duration(milliseconds: receiveTimeout),
     );
 
-    _dio = Dio(options);
+    dio = Dio(options);
 
-    _dio.interceptors.add(PrettyDioLogger(
-      // 添加日志格式化工具类
-      requestHeader: true,
-      requestBody: true,
-      responseBody: true,
-      responseHeader: false,
-      compact: false,
-    ));
-
+    // dio.interceptors.add(PrettyDioLogger(
+    //   // 添加日志格式化工具类
+    //   requestHeader: true,
+    //   requestBody: true,
+    //   responseBody: true,
+    //   responseHeader: false,
+    //   compact: false,
+    // ));
   }
-
 }

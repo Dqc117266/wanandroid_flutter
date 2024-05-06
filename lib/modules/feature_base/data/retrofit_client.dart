@@ -8,5 +8,4 @@ class RetrofitClient {
     _instance ??= RetrofitClient._();
     return _instance!;
   }
-
 }
