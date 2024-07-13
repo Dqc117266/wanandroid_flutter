@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:wanandroid_flutter/modules/feature_home/data/model/article_model.dart';
 import 'package:wanandroid_flutter/modules/feature_home/domain/usecase/get_banner_usecase.dart';
