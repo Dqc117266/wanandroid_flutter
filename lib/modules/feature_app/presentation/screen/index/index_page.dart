@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wanandroid_flutter/generated/svg/wan_svgs.g.dart';
-import 'package:wanandroid_flutter/modules/feature_base/presentation/widgets/wan_svg.dart';
 
 import 'index_logic.dart';
 
 class IndexPage extends StatelessWidget {
+  static const routeName = '/index';
   IndexPage({Key? key}) : super(key: key);
 
-  final List<BottomNavigationBarItem> bottomNavigationBarItems = [
-    _bottomNavigationBarItem(WanSvgs.home_unselected_m, "主页"),
-    _bottomNavigationBarItem(WanSvgs.projects_unselected_m, "项目"),
-    _bottomNavigationBarItem(WanSvgs.projects_unselected_m, ""),
-    _bottomNavigationBarItem(WanSvgs.projects_unselected_m, ""),
+  final List<NavigationDestination> bottomNavigationBarItems = [
+    _bottomNavigationBarItem(Icons.home, "主页"),
+    _bottomNavigationBarItem(Icons.layers, "项目"),
+    _bottomNavigationBarItem(Icons.wechat, "公众号"),
+    _bottomNavigationBarItem(Icons.person, "我的"),
   ];
 
-
-  static BottomNavigationBarItem _bottomNavigationBarItem(WanSvgData defaultImage, String label) {
-    return BottomNavigationBarItem(
-      icon: WanSvg(defaultImage),
+  static NavigationDestination _bottomNavigationBarItem(IconData defaultImage, String label) {
+    return NavigationDestination(
+      icon: Icon(defaultImage),
       label: label,
     );
   }
@@ -27,6 +25,25 @@ class IndexPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final IndexLogic logic = Get.find<IndexLogic>();
 
-    return Container();
+    return Obx(() => Scaffold(
+      body: PageView(
+        controller: logic.pageController,
+        physics: NeverScrollableScrollPhysics(),
+        children: logic.navPages,
+        onPageChanged: (int index) {
+          logic.navigate(index);
+        },
+      ),
+      bottomNavigationBar: Focus(
+        autofocus: false,
+        child: NavigationBar(
+          selectedIndex: logic.index.value,
+          onDestinationSelected: (index) {
+            logic.navigate(index);
+          },
+          destinations: bottomNavigationBarItems,
+        ),
+      ),
+    ));
   }
 }

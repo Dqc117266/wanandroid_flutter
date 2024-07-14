@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:wanandroid_flutter/modules/feature_home/presentation/screen/home/home_page.dart';
+import 'package:wanandroid_flutter/modules/feature_app/presentation/screen/index/index_binding.dart';
+import 'package:wanandroid_flutter/modules/feature_app/presentation/screen/index/index_page.dart';
 import 'package:wanandroid_flutter/router/app_routers.dart';
 
 class MyApp extends StatelessWidget {
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
         showPerformanceOverlay: false,
         defaultTransition: Transition.rightToLeft,
         getPages: AppRoutes.routerPages,
-        initialRoute: HomePage.routeName,
+        initialRoute: AppRoutes.initialRoute,
       ),
     );
   }

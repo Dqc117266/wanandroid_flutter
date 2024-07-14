@@ -21,5 +21,4 @@ class IndexLogic extends GetxController {
     this.index.value = index;
     pageController.jumpToPage(index);
   }
-
 }

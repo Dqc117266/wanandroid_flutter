@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'mine_logic.dart';
 
 class MinePage extends StatelessWidget {
+  static const routeName = '/mine';
+
   const MinePage({Key? key}) : super(key: key);
 
   @override

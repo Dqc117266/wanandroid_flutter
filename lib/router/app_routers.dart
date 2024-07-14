@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:wanandroid_flutter/modules/feature_home/presentation/screen/home/home_binding.dart';
-import 'package:wanandroid_flutter/modules/feature_home/presentation/screen/home/home_page.dart';
+import 'package:wanandroid_flutter/modules/feature_app/presentation/screen/index/index_binding.dart';
+import 'package:wanandroid_flutter/modules/feature_app/presentation/screen/index/index_page.dart';
 
 class AppRoutes {
   static RxString curPage = initialRoute.obs;
@@ -10,8 +10,9 @@ class AppRoutes {
 
   static final routerPages = [
     GetPage(
-        name: HomePage.routeName,
-        page: () => HomePage(),
-        binding: HomeBinding()),
+      name: initialRoute,
+      page: () => IndexPage(),
+      binding: IndexBinding(),
+    ),
   ];
 }

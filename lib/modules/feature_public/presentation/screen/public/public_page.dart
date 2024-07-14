@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'public_logic.dart';
 
 class PublicPage extends StatelessWidget {
+  static const routeName = '/public';
+
   const PublicPage({Key? key}) : super(key: key);
 
   @override

@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'projects_logic.dart';
 
 class ProjectsPage extends StatelessWidget {
+  static const routeName = '/project';
+
   const ProjectsPage({Key? key}) : super(key: key);
 
   @override
