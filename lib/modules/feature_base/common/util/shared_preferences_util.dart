@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPreferencesUtils {
+class SharedPreferencesUtil {
   static late SharedPreferences _prefs;
 
   static Future<void> initialize() async {

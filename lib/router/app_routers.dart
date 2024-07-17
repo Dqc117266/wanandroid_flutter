@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:wanandroid_flutter/modules/feature_app/presentation/screen/index/index_binding.dart';
 import 'package:wanandroid_flutter/modules/feature_app/presentation/screen/index/index_page.dart';
 
 class AppRoutes {
@@ -12,7 +11,6 @@ class AppRoutes {
     GetPage(
       name: initialRoute,
       page: () => IndexPage(),
-      binding: IndexBinding(),
     ),
   ];
 }

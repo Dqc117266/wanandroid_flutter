@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:wanandroid_flutter/modules/feature_base/common/component/keep_alive_wrapper.dart';
+import 'package:wanandroid_flutter/modules/feature_base/presentation/widgets/keep_alive_wrapper.dart';
 import 'package:wanandroid_flutter/modules/feature_home/presentation/screen/home/home_page.dart';
 import 'package:wanandroid_flutter/modules/feature_mine/presentation/screen/mine/mine_page.dart';
 import 'package:wanandroid_flutter/modules/feature_projects/presentation/screen/projects/projects_page.dart';

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:wanandroid_flutter/env/env.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioClient {
   static const int connectTimeout = 15000;
@@ -20,13 +21,13 @@ class DioClient {
 
     dio = Dio(options);
 
-    // dio.interceptors.add(PrettyDioLogger(
-    //   // 添加日志格式化工具类
-    //   requestHeader: true,
-    //   requestBody: true,
-    //   responseBody: true,
-    //   responseHeader: false,
-    //   compact: false,
-    // ));
+    dio.interceptors.add(PrettyDioLogger(
+      // 添加日志格式化工具类
+      requestHeader: true,
+      requestBody: true,
+      responseBody: true,
+      responseHeader: false,
+      compact: false,
+    ));
   }
 }

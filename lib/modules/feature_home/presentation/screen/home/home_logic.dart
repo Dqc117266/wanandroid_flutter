@@ -1,13 +1,16 @@
 import 'package:get/get.dart';
+import 'package:wanandroid_flutter/modules/feature_base/presentation/view_state/view_state_logic.dart';
 import 'package:wanandroid_flutter/modules/feature_home/data/model/article_model.dart';
+import 'package:wanandroid_flutter/modules/feature_home/data/model/home_article_results_model.dart';
 import 'package:wanandroid_flutter/modules/feature_home/domain/usecase/get_banner_usecase.dart';
 import 'package:wanandroid_flutter/modules/feature_home/domain/usecase/get_home_usecase.dart';
 import 'package:wanandroid_flutter/modules/feature_home/domain/usecase/get_toparticle_usecase.dart';
 
-class HomeLogic extends GetxController {
+class HomeLogic extends ViewStateLogic {
   final GetHomeUseCase getHomeUseCase = Get.find<GetHomeUseCase>();
   final GetBannerUseCase getBannerUseCase = Get.find<GetBannerUseCase>();
-  final GetTopArticleUseCase getTopArticleUseCase = Get.find<GetTopArticleUseCase>();
+  final GetTopArticleUseCase getTopArticleUseCase =
+      Get.find<GetTopArticleUseCase>();
 
   RxList<ArticleModel> dataList = <ArticleModel>[].obs;
 
@@ -20,6 +23,10 @@ class HomeLogic extends GetxController {
     } else {
       print("Failed to fetch home articles.");
     }
+  }
+
+  void send(int page) {
+    sendRequest<HomeArticleResultsModel>(() => getHomeUseCase.call(page));
   }
 
   Future<void> getBanner() async {
@@ -42,5 +49,4 @@ class HomeLogic extends GetxController {
       print("Failed to fetch home articles.");
     }
   }
-
 }
