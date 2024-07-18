@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
-import 'package:wanandroid_flutter/modules/feature_base/presentation/view_state/view_state_page_logic.dart';
+import 'package:wanandroid_flutter/modules/feature_base/presentation/view_state/view_state_paging_logic.dart';
 import 'package:wanandroid_flutter/modules/feature_home/data/model/article_model.dart';
 import 'package:wanandroid_flutter/modules/feature_home/data/model/banner_model.dart';
 import 'package:wanandroid_flutter/modules/feature_home/domain/usecase/get_banner_usecase.dart';
 import 'package:wanandroid_flutter/modules/feature_home/domain/usecase/get_home_usecase.dart';
 import 'package:wanandroid_flutter/modules/feature_home/domain/usecase/get_toparticle_usecase.dart';
 
-class HomeLogic extends ViewStatePageLogic {
+class HomeLogic extends ViewStatePagingLogic {
   final GetHomeUseCase getHomeUseCase = Get.find<GetHomeUseCase>();
   final GetBannerUseCase getBannerUseCase = Get.find<GetBannerUseCase>();
   final GetTopArticleUseCase getTopArticleUseCase =

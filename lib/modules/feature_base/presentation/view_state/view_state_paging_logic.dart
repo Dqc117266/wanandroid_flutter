@@ -2,7 +2,7 @@ import 'package:easy_refresh/easy_refresh.dart';
 import 'package:get/get.dart';
 import 'package:wanandroid_flutter/modules/feature_base/presentation/view_state/view_state.dart';
 
-abstract class ViewStatePageLogic<T> extends GetxController {
+abstract class ViewStatePagingLogic<T> extends GetxController {
   final Rx<ViewState> viewState = ViewState().obs;
   final RxList<T> dataList = <T>[].obs;
   final EasyRefreshController _easyController = EasyRefreshController(
