@@ -2,45 +2,21 @@ import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wanandroid_flutter/modules/feature_base/presentation/view_state/view_state.dart';
-import 'package:wanandroid_flutter/modules/feature_home/data/model/home_article_results_model.dart';
 
 import 'home_logic.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   static const routeName = '/home';
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  EasyRefreshController _controller = EasyRefreshController(
-    controlFinishRefresh: true,
-    controlFinishLoad: true,
-  );
-
-  final logic = Get.find<HomeLogic>();
-
-  @override
-  void initState() {
-    super.initState();
-    fetchData();
-  }
-
-  Future<void> fetchData() async {
-    // await logic.getHomeArticles(0);
-    // await logic.getBanner(); // 获取banner数据
-    // await logic.getHomeTopArticles(); // 获取首页置顶文章数据
-  }
-
-  @override
   Widget build(BuildContext context) {
-    logic.send(0);
+    final logic = Get.find<HomeLogic>();
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("title"),
+        title: Text("首页"),
       ),
       body: Obx(() {
         final viewState = logic.viewState.value;
@@ -50,52 +26,38 @@ class _HomePageState extends State<HomePage> {
           transitionBuilder: (Widget child, Animation<double> animation) {
             return FadeTransition(opacity: animation, child: child); // 使用渐隐动画
           },
-          child: _buildContent(viewState),
+          child: _buildContent(viewState, logic),
         );
       }),
     );
   }
 
-  Widget _buildContent(ViewState viewState) {
+  Widget _buildContent(ViewState viewState, HomeLogic logic) {
     if (viewState.isLoading()) {
       return Center(child: CircularProgressIndicator());
     } else if (viewState.isSuccess()) {
-      final data = viewState.data as HomeArticleResultsModel;
-      return _buildEasyRefresh(data.datas);
-    } else if (viewState.isEmpty()) {
-      return Center(child: Text('No Data Available'));
-    } else if (viewState.isError()) {
-      return Center(child: Text('Error: ${(viewState as ViewStateError).errorMessage}'));
-    } else if (viewState.isFail()) {
-      return Center(child: Text('Request Failed: ${(viewState as ViewStateFail).errorMessage}'));
-    } else {
-      return Container();
+      return _buildEasyRefresh(logic);
     }
+
+    return Container();
   }
 
-  Widget _buildEasyRefresh(dataList) {
+  Widget _buildEasyRefresh(HomeLogic logic) {
     return EasyRefresh(
-      controller: _controller,
-      header: ClassicHeader(),
-      footer: ClassicFooter(),
-      onRefresh: () {
-        _controller.finishRefresh();
+      controller: logic.easyController,
+      onRefresh: () async {
+        logic.refreshData();
       },
-      onLoad: () {
-        _controller.finishLoad(IndicatorResult.noMore);
+      onLoad: () async {
+        logic.loadMoreData();
       },
       child: ListView.builder(
-        itemCount: dataList.length,
+        itemCount: logic.dataList.length,
         itemBuilder: (context, index) {
-          return ListTile(title: Text(dataList[index].title!));
+          final item = logic.dataList[index];
+          return ListTile(title: Text(item.title!));
         },
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    Get.delete<HomeLogic>();
-    super.dispose();
   }
 }

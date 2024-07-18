@@ -8,7 +8,7 @@ class IndexPage extends StatelessWidget {
   IndexPage({Key? key}) : super(key: key);
 
   final List<NavigationDestination> bottomNavigationBarItems = [
-    _bottomNavigationBarItem(Icons.home, "主页"),
+    _bottomNavigationBarItem(Icons.home, "首页"),
     _bottomNavigationBarItem(Icons.layers, "项目"),
     _bottomNavigationBarItem(Icons.wechat, "公众号"),
     _bottomNavigationBarItem(Icons.person, "我的"),
