@@ -14,7 +14,7 @@ class NetworkUtil {
 
       debugPrint('NetworkUtil: $e');
       RequestException requestException = RequestException.create(e);
-      showToast("errorcode :${requestException.code} message: ${requestException.message}");
+      // showToast("errorcode :${requestException.code} message: ${requestException.message}");
 
       return Result.failure(
         code: requestException.code,

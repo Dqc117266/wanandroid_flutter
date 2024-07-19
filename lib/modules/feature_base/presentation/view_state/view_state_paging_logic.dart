@@ -1,5 +1,6 @@
 import 'package:easy_refresh/easy_refresh.dart';
 import 'package:get/get.dart';
+import 'package:wanandroid_flutter/modules/feature_base/common/util/toast_util.dart';
 import 'package:wanandroid_flutter/modules/feature_base/presentation/view_state/view_state.dart';
 
 abstract class ViewStatePagingLogic<T> extends GetxController {
@@ -65,11 +66,15 @@ abstract class ViewStatePagingLogic<T> extends GetxController {
     }
   }
 
-  void handleError(int code, String message) {
+  void handleError(int code, String message, {bool isShowErrorToast = false}) {
     if (currentPage == 0) {
       viewState(ViewStateError(code, message));
     } else {
       viewState(ViewStateFail(code, message));
+    }
+
+    if (isShowErrorToast) {
+      showToast(message);
     }
 
     _easyController.finishRefresh(IndicatorResult.fail);

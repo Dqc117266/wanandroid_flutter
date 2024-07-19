@@ -12,10 +12,11 @@ class HomeLogic extends ViewStatePagingLogic {
   final GetTopArticleUseCase getTopArticleUseCase =
       Get.find<GetTopArticleUseCase>();
 
+  final RxList<BannerModel> bannerList = <BannerModel>[].obs;
+
   @override
   Future<void> fetchData({required bool refresh}) async {
     List<ArticleModel> topList = [];
-    List<BannerModel> bannerList = [];
     List<ArticleModel> finalList = [];
 
     if (refresh) {
@@ -28,9 +29,9 @@ class HomeLogic extends ViewStatePagingLogic {
 
       final bannerResult = await getBannerUseCase.call();
       if (bannerResult.isSuccess) {
-        bannerList = bannerResult.result!.data!;
+        bannerList.assignAll(bannerResult.result!.data!);
       } else {
-        bannerList = [];
+        bannerList.clear();
       }
     }
 
@@ -45,7 +46,7 @@ class HomeLogic extends ViewStatePagingLogic {
       finalList.addAll(data.datas!);
       updateState(finalList, refresh: refresh, pageSize: data.pageCount);
     } else if (result.isFailure) {
-      handleError(result.code!, result.message!);
+      handleError(result.code!, result.message!, isShowErrorToast: true);
     }
   }
 }
